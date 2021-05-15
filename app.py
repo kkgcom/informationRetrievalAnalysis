@@ -40,9 +40,9 @@ def predict():
     person['tfidf']=list(train_tfidf.toarray())
     distance, idx = kdtree.query(person['tfidf'][person['Name']== person_name].tolist(), k=3)
     for i, value in list(enumerate(idx[0])):
-	    output ="Name : {}".format(person['Name'][value]) +" "
+	    output = output + "Name : {}".format(person['Name'][value]) +" "
 	    "Distance : {}".format(distance[0][i]) + " "
-	    "URI : {}".format(person['URI'][value])
+	    "URI : {}".format(person['URI'][value]) +"\n"
 
 
     return render_template('index.html',prediction_text=output)
