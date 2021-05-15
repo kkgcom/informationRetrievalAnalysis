@@ -34,15 +34,15 @@ def predict():
     kdtree = KDTree(a ,leaf_size=3)
 
     #take the name of the personality as input
-    person_name=request.form.get('person')
+    person_name="MS Dhoni" 
+    #request.form.get('person')
 
     #Using KDTree to get K articles similar to the given name
     person['tfidf']=list(train_tfidf.toarray())
     distance, idx = kdtree.query(person['tfidf'][person['Name']== person_name].tolist(), k=3)
+    output=''
     for i, value in list(enumerate(idx[0])):
-	    output = output + "Name : {}".format(person['Name'][value]) +" "
-	    "Distance : {}".format(distance[0][i]) + " "
-	    "URI : {}".format(person['URI'][value]) +"\n"
+	    output = output + "Name : {}".format(person['Name'][value]) + "Distance : {}".format(distance[0][i]) + "URI : {}".format(person['URI'][value]) + "\n"
 
 
     return render_template('index.html',prediction_text=output)
